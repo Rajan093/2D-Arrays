@@ -1,0 +1,67 @@
+#include <stdio.h>
+int main (){
+    int n,m,r ;
+    printf ("enter n,m,r\n");
+    printf ("parameter of m1 is n*m\n");
+    printf ("parameter of m2 is m*r\n");
+    printf ("parameter of m3 is n*r\n");
+    scanf ("%d%d%d" , &n ,&m ,&r );
+    int m1[n][m];
+    int m2[m][r];
+    int m3[n][r];
+
+    int *ptr1= &m1[0][0];
+    int *ptr2= &m2[0][0];
+    int *ptr3= &m3[0][0];
+    
+    printf ("enter element of m1\n");
+    for (int i=0 ; i<n ; i++){
+        for (int j=0 ; j<m ; j++){
+            scanf ("%d" , (ptr1+i*m+j));
+        }
+    }
+    printf ("m1 is \n");
+    for (int i =0 ; i<n ; i++){
+        for (int j=0 ; j<m ; j++){
+            printf ("%d " , *(ptr1+i*m+j));
+        }
+        printf ("\n");
+    }
+
+    printf ("enter element of m2\n");
+    for (int i =0 ; i<m ; i++){
+        for (int j=0 ; j<r ; j++){
+            scanf ("%d" , (ptr2+i*r+j));
+        }
+    }
+    printf ("m2 is \n");
+    for (int i =0 ; i<m ; i++){
+        for (int j=0 ; j<r ; j++){
+            printf  ("%d " , *(ptr2+i*r+j));
+        }
+        printf ("\n");
+    }
+    
+    int sum = 0 ;
+
+    for (int i = 0; i<n ; i++){
+        for (int j =0 ; j <r ; j++){
+            for (int k =0 ; k<m ; k++){
+                sum = sum + (*(ptr1+i*m+k))*(*(ptr2+j+k*r));
+            }
+            *(ptr3 + j+i*r) = sum ;
+            sum = 0 ;
+        }
+    }
+    
+    printf ("m3 is \n");
+
+       
+    for (int i =0 ; i<n ; i++){
+        for (int j=0 ; j<r ; j++){
+            printf("%d " , *(ptr3 + j + i*r));
+        }
+        printf ("\n");
+    }
+return 0;
+}
